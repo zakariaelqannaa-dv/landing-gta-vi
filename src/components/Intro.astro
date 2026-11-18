@@ -1,0 +1,143 @@
+---
+import HeroKeyLogo from "@/assets/hero-key-logo.webp"
+import HeroKeyBackground from "@/assets/hero-key-background.webp"
+import LogoVI from "@/assets/logo-vi.svg"
+import PlayButtonIcon from "@/assets/play-button.svg"
+import LogoCutted from "@/assets/logo-cutted.svg"
+import KeepScrolling from "@/assets/keep-scrolling.svg"
+---
+
+<section id="intro" class="relative h-[320vh]" aria-labelledby="intro-title">
+  <h1 id="intro-title" class="sr-only">Grand Theft Auto VI</h1>
+
+  <!-- The sticky stage pins the whole composition for the length of the intro,
+       then releases it so the rest of the page can scroll normally. -->
+  <div class="sticky top-0 h-screen overflow-hidden">
+    <!-- Clipped layer: white backdrop plus the hero photo, revealed through the
+         shape of the GTA wordmark by animating `mask-size`. -->
+    <div id="logo-mask" class="absolute inset-0 bg-white">
+      <picture id="hero-key" class="absolute inset-0 block scale-125">
+        <img
+          id="hero-key-logo"
+          src={HeroKeyLogo.src}
+          alt=""
+          aria-hidden="true"
+          class="absolute inset-0 h-full w-full object-cover"
+        />
+        <img
+          id="hero-key-background"
+          src={HeroKeyBackground.src}
+          alt="Two armed characters standing on a dock with a Vice City skyline behind them."
+          class="absolute inset-0 h-full w-full object-cover"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </picture>
+    </div>
+
+    <!-- Foreground interface, drawn on top of the mask and never clipped. -->
+    <div
+      class="pointer-events-none absolute inset-0 flex flex-col items-center justify-between px-6 py-8 sm:px-12 sm:py-14 lg:px-20 lg:py-16"
+    >
+      <header class="pointer-events-auto flex w-full justify-start">
+        <LogoVI
+          class="size-11 text-white transition-colors duration-500 hover:text-yellow-100"
+          aria-hidden="true"
+        />
+      </header>
+
+      <a
+        id="hero-play-button"
+        href="#trailer"
+        aria-label="Watch the Grand Theft Auto VI Trailer 2"
+        class="pointer-events-auto absolute inset-0 m-auto inline-flex size-32 items-center justify-center rounded-full text-white backdrop-blur-3xl transition-transform duration-500 hover:scale-110"
+      >
+        <PlayButtonIcon class="size-32" aria-hidden="true" />
+      </a>
+
+      <footer
+        id="hero-footer"
+        class="pointer-events-none absolute inset-x-0 bottom-8 flex justify-center"
+      >
+        <div class="relative">
+          <LogoCutted
+            class="w-38 text-white drop-shadow-[0_0_2px_rgba(255,255,255,.5),0_0_8px_#000]"
+            aria-hidden="true"
+          />
+          <span
+            class="absolute top-[49px] left-1/2 -translate-x-1/2 text-center text-lg font-medium tracking-[6px] whitespace-nowrap uppercase text-shadow-[0_0_2px_rgba(255,255,255,.5),0_0_8px_#000]"
+          >
+            Watch Trailer 2
+          </span>
+        </div>
+      </footer>
+    </div>
+
+    <KeepScrolling
+      class="pointer-events-none absolute inset-x-0 bottom-3 mx-auto w-fit animate-bounce-pulse text-pink-300 drop-shadow-2xl"
+      aria-hidden="true"
+    />
+  </div>
+</section>
+
+<style>
+  #logo-mask {
+    background: white;
+    mask-image: url("/logo-stack.svg");
+    mask-position: center 25%;
+    mask-repeat: no-repeat;
+    /* Starts far larger than the viewport (the viewport sits inside a single
+       glyph, so the whole screen reads as one solid plate) and shrinks until the
+       wordmark fits on screen. */
+    mask-size: 5000vh;
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap"
+  import { ScrollTrigger } from "gsap/ScrollTrigger"
+
+  const MASK_START = "5000vh"
+  const MASK_END = "30vh"
+
+  const intro = document.querySelector<HTMLElement>("#intro")
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches
+
+  if (intro && prefersReducedMotion) {
+    // Skip the scroll choreography entirely and jump to the settled state.
+    intro.style.height = "100vh"
+    gsap.set("#logo-mask", { maskSize: MASK_END })
+    gsap.set("#hero-key", { autoAlpha: 0 })
+    gsap.set("#hero-key-logo", { autoAlpha: 0 })
+    gsap.set("#hero-footer", { autoAlpha: 0 })
+    gsap.set("#hero-play-button", { autoAlpha: 0 })
+  } else if (intro) {
+    gsap.registerPlugin(ScrollTrigger)
+
+    gsap
+      .timeline({
+        defaults: { ease: "power2.out" },
+        scrollTrigger: {
+          trigger: intro,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 1,
+        },
+      })
+      .fromTo("#hero-key", { scale: 1.25 }, { scale: 1, duration: 1 })
+      // `autoAlpha` also toggles `visibility`, so faded controls drop out of the
+      // tab order instead of staying focusable but invisible.
+      .fromTo("#hero-key-logo", { autoAlpha: 1 }, { autoAlpha: 0, duration: 1 }, "<")
+      .fromTo("#hero-footer", { autoAlpha: 1 }, { autoAlpha: 0, duration: 1 }, "<")
+      .fromTo("#hero-play-button", { autoAlpha: 1 }, { autoAlpha: 0, duration: 1 }, "<")
+      .fromTo(
+        "#logo-mask",
+        { maskSize: MASK_START },
+        { maskSize: MASK_END, duration: 1 },
+        0.15
+      )
+      .to("#hero-key", { autoAlpha: 0, duration: 0.2 }, 0.4)
+  }
+</script>

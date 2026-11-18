@@ -1,0 +1,56 @@
+---
+// Project links. Update these if the repository is renamed or moved.
+const REPO_URL = "https://github.com/zakariaelqannaa-dv/landing-gta-vi"
+const NEW_ISSUE = `${REPO_URL}/issues/new`
+const YEAR = new Date().getFullYear()
+---
+
+<footer class="border-t border-white/10">
+  <div
+    class="mx-auto flex w-full max-w-5xl flex-col gap-6 px-6 py-12 sm:flex-row sm:items-start sm:justify-between"
+  >
+    <p class="max-w-xl text-xs leading-relaxed text-white/40">
+      A fan-made, non-commercial recreation of the Grand Theft Auto VI landing
+      page. Not affiliated with Rockstar Games or Take-Two Interactive. All
+      trademarks and imagery belong to their respective owners.
+    </p>
+
+    <nav
+      aria-label="Project links"
+      class="flex flex-wrap gap-x-6 gap-y-2 text-xs tracking-[0.15em] uppercase"
+    >
+      <a
+        href={`${NEW_ISSUE}?labels=bug`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-white/60 transition-colors hover:text-white"
+      >
+        Report a bug
+      </a>
+      <a
+        href={`${NEW_ISSUE}?labels=enhancement`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-white/60 transition-colors hover:text-white"
+      >
+        Feedback
+      </a>
+      <a
+        href={REPO_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-white/60 transition-colors hover:text-white"
+      >
+        GitHub
+      </a>
+    </nav>
+  </div>
+
+  <div class="mx-auto w-full max-w-5xl px-6 pb-10">
+    <p
+      class="border-t border-white/10 pt-6 text-[11px] tracking-[0.15em] text-white/30 uppercase"
+    >
+      © {YEAR} zakariaelqannaa-dv · Released under the MIT License
+    </p>
+  </div>
+</footer>

@@ -1,0 +1,84 @@
+---
+import HeroKeyBackground from "@/assets/hero-key-background.webp"
+import PlayButtonIcon from "@/assets/play-button.svg"
+
+// Official "Grand Theft Auto VI Trailer 2" published by Rockstar Games.
+const TRAILER_ID = "VQRLujxTm3c"
+const TRAILER_URL = `https://www.youtube.com/watch?v=${TRAILER_ID}`
+---
+
+<section
+  id="trailer"
+  aria-labelledby="trailer-title"
+  class="border-t border-white/10"
+>
+  <div class="mx-auto w-full max-w-5xl px-6 py-20 sm:py-28">
+    <p class="text-xs font-semibold tracking-[0.3em] text-pink-300 uppercase">
+      Trailer 2
+    </p>
+    <h2
+      id="trailer-title"
+      class="mt-4 text-3xl font-bold tracking-tight uppercase sm:text-4xl"
+    >
+      Return to Leonida
+    </h2>
+    <p class="mt-4 max-w-2xl text-sm leading-relaxed text-white/60 sm:text-base">
+      Lucia and Jason, two outlaws bound by fate, fight for survival in the state
+      of Leonida — home to the neon-drenched streets of Vice City.
+    </p>
+
+    <div
+      id="trailer-player"
+      class="relative mt-10 aspect-video overflow-hidden border border-white/10 bg-neutral-900"
+    >
+      <img
+        src={HeroKeyBackground.src}
+        alt=""
+        loading="lazy"
+        decoding="async"
+        class="absolute inset-0 h-full w-full object-cover opacity-70"
+      />
+      <button
+        id="trailer-play"
+        type="button"
+        aria-label="Play Grand Theft Auto VI Trailer 2"
+        class="absolute inset-0 m-auto inline-flex size-20 items-center justify-center rounded-full text-white backdrop-blur-3xl transition-transform duration-500 hover:scale-110"
+      >
+        <PlayButtonIcon class="size-20" aria-hidden="true" />
+      </button>
+    </div>
+
+    <p class="mt-4 text-xs leading-relaxed text-white/40">
+      Official Trailer 2, courtesy of Rockstar Games. The video is loaded from
+      youtube-nocookie.com only after you press play.
+      <a
+        href={TRAILER_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-pink-300 underline underline-offset-4 hover:text-pink-200"
+      >
+        Open on YouTube
+      </a>
+    </p>
+  </div>
+</section>
+
+<script define:vars={{ TRAILER_ID }}>
+  const player = document.getElementById("trailer-player")
+  const button = document.getElementById("trailer-play")
+
+  button?.addEventListener("click", () => {
+    if (!player) return
+
+    const iframe = document.createElement("iframe")
+    iframe.className = "absolute inset-0 h-full w-full"
+    iframe.src = `https://www.youtube-nocookie.com/embed/${TRAILER_ID}?autoplay=1&rel=0`
+    iframe.title = "Grand Theft Auto VI Trailer 2"
+    iframe.allow =
+      "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    iframe.referrerPolicy = "strict-origin-when-cross-origin"
+    iframe.setAttribute("allowfullscreen", "")
+
+    player.replaceChildren(iframe)
+  })
+</script>
