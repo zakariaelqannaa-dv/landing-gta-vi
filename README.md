@@ -6,14 +6,24 @@
 
 # Grand Theft Auto VI — Landing Page
 
-A scroll-driven recreation of the Grand Theft Auto VI landing page, built with Astro, Tailwind CSS and GSAP.
+**A cinematic, scroll-driven recreation of the Grand Theft Auto VI landing page.**
 
-[Report a bug](https://github.com/zakariaelqannaa-dv/landing-gta-vi/issues/new?labels=bug) · [Request a feature](https://github.com/zakariaelqannaa-dv/landing-gta-vi/issues/new?labels=enhancement)
+The GTA VI wordmark doubles as a CSS `mask-image` that zooms out across a pinned stage and reveals the key art underneath — no video, no WebGL, no canvas. Just one GSAP timeline, a sticky section and a mask. Built with **Astro 7**, **Tailwind CSS 4**, **GSAP 3** and **TypeScript**, the site is fully static and ships zero JavaScript until you scroll.
+
+[Report a bug](https://github.com/zakariaelqannaa-dv/landing-gta-vi/issues/new?labels=bug) · [Request a feature](https://github.com/zakariaelqannaa-dv/landing-gta-vi/issues/new?labels=enhancement) · [Contribute](https://github.com/zakariaelqannaa-dv/landing-gta-vi/compare)
 
 [![Astro][astro-badge]][astro-url]
 [![Tailwind CSS][tailwind-badge]][tailwind-url]
 [![GSAP][gsap-badge]][gsap-url]
+[![TypeScript][ts-badge]][ts-url]
+[![Node.js][node-badge]][node-url]
 [![License: MIT][license-badge]][license-url]
+
+[![PRs welcome][prs-badge]][new-pr-url]
+[![Last commit][commit-badge]][commits-url]
+[![Issues][issues-badge]][issues-url]
+
+**Tags:** `astro` · `tailwindcss` · `gsap` · `scrolltrigger` · `typescript` · `landing-page` · `gta-vi` · `scroll-animation` · `css-mask` · `frontend` · `fan-made`
 
 </div>
 
@@ -171,11 +181,22 @@ This is a fan-made, non-commercial project created for learning and demonstratio
 
 <p align="right"><a href="#readme-top">Back to top</a></p>
 
+[repo-url]: https://github.com/zakariaelqannaa-dv/landing-gta-vi
+[new-pr-url]: https://github.com/zakariaelqannaa-dv/landing-gta-vi/compare
+[commits-url]: https://github.com/zakariaelqannaa-dv/landing-gta-vi/commits/main
+[issues-url]: https://github.com/zakariaelqannaa-dv/landing-gta-vi/issues
 [astro-url]: https://astro.build/
 [tailwind-url]: https://tailwindcss.com/
 [gsap-url]: https://gsap.com/
+[ts-url]: https://www.typescriptlang.org/
+[node-url]: https://nodejs.org/
 [license-url]: LICENSE
 [astro-badge]: https://img.shields.io/badge/Astro-7-BC52EE?style=for-the-badge&logo=astro&logoColor=white
 [tailwind-badge]: https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white
 [gsap-badge]: https://img.shields.io/badge/GSAP-3-88CE02?style=for-the-badge&logo=greensock&logoColor=white
+[ts-badge]: https://img.shields.io/badge/TypeScript-strict-3178C6?style=for-the-badge&logo=typescript&logoColor=white
+[node-badge]: https://img.shields.io/badge/Node.js-%E2%89%A5_22.12-5FA04E?style=for-the-badge&logo=nodedotjs&logoColor=white
 [license-badge]: https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge
+[prs-badge]: https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square
+[commit-badge]: https://img.shields.io/github/last-commit/zakariaelqannaa-dv/landing-gta-vi?style=flat-square&label=last%20commit&color=8A2BE2
+[issues-badge]: https://img.shields.io/github/issues/zakariaelqannaa-dv/landing-gta-vi?style=flat-square&color=F97316

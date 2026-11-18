@@ -2,6 +2,19 @@
   "name": "live-landing-gta-vi",
   "type": "module",
   "version": "0.0.1",
+  "description": "A cinematic, scroll-driven recreation of the Grand Theft Auto VI landing page built with Astro 7, Tailwind CSS 4 and GSAP 3.",
+  "keywords": [
+    "astro",
+    "tailwindcss",
+    "gsap",
+    "scrolltrigger",
+    "typescript",
+    "landing-page",
+    "gta-vi",
+    "scroll-animation",
+    "css-mask",
+    "frontend"
+  ],
   "author": "zakariaelqannaa-dv",
   "license": "MIT",
   "repository": {
